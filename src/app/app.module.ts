@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AlertComponent } from './_components/alert.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {ErrorInterceptor, JwtInterceptor} from "@app/_helpers";
+import {ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {ErrorInterceptor, JwtInterceptor} from '@app/_helpers';
 
 @NgModule({
   declarations: [

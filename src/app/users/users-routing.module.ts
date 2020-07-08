@@ -1,9 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {LayoutComponent} from '@app/users/layout.component';
+import {ListComponent} from '@app/users/list.component';
+import {AddEditComponent} from '@app/users/add-edit.component';
 
-import { UsersComponent } from './users.component';
-
-const routes: Routes = [{ path: '', component: UsersComponent }];
+const routes: Routes = [
+  {
+    path: '', component: LayoutComponent,
+    children: [
+      { path: '', component: ListComponent },
+      { path: 'add', component: AddEditComponent },
+      { path: 'edit/:id', component: AddEditComponent }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
