@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-// @ts-ignore
-import {AccountService} from "@app/_services/account.service";
-// @ts-ignore
-import {User} from "@app/_models";
+import {AccountService} from '@app/_services/account.service';
+import {User} from '@app/_models';
 
 @Component({
   selector: 'app-root',
@@ -11,20 +9,14 @@ import {User} from "@app/_models";
 })
 export class AppComponent {
   user: User;
-  title: "Login and Register Form";
+  title: 'Login and Register Form';
 
-  constructor() {
-    this.user = {
-      id: '1',
-      username: "Kien",
-      password: '123',
-      firstName: 'Nguyen',
-      lastName: 'Kien',
-      token: '12333'
-    }
+  constructor(private accountService: AccountService) {
+    this.accountService.user.subscribe(x => this.user = x);
   }
 
   logout(){
+    this.accountService.logout();
   }
 
 }
