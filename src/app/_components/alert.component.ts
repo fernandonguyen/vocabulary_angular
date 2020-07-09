@@ -33,6 +33,11 @@ export class AlertComponent implements OnInit, OnDestroy {
 
           // add alert to array
           this.alerts.push(alert);
+
+          // auto close alert if required
+          if (alert.autoClose) {
+            setTimeout(() => this.removeAlert(alert), 3000);
+          }
         });
 
     //client alerts on location change
@@ -65,7 +70,7 @@ export class AlertComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const classes = ['alert', 'alert-dismissable', 'mt-4', 'container'];
+    const classes = ['alert', 'alert-dismissible', 'mt-4', 'container'];
 
     const alertTypeClass = {
       [AlertType.Success]: 'alert alert-success',
@@ -80,7 +85,7 @@ export class AlertComponent implements OnInit, OnDestroy {
       classes.push('fade');
     }
 
-    return classes.join('');
+    return classes.join(' ');
   }
 
 }
