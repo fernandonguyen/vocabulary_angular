@@ -16,6 +16,9 @@ a, a:hover, a:focus {
     text-decoration: none;
     transition: all 0.3s;
 }
+.wrapper {
+    min-height:100vh;
+}
 
 .navbar {
     padding: 15px 10px;
@@ -48,7 +51,7 @@ a, a:hover, a:focus {
     /**top: 0;**/
     left: 0;
     height: 100vh;
-    z-index: 999;
+    z-index: 5;
     background: #36486b;
     color: #fff;
     transition: all 0.3s;
