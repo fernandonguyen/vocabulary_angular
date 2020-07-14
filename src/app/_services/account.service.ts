@@ -52,6 +52,7 @@ export class AccountService {
   }
 
   getById(id: string) {
+    console.log(id);
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
 

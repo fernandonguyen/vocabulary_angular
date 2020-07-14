@@ -1,0 +1,17 @@
+.page-footer {
+    background-color: #2196f3 !important;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100%;
+}
