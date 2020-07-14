@@ -11,3 +11,7 @@ a { cursor: pointer; }
     text-align: center;
     box-sizing: content-box;
 }
+
+.container{
+    min-height:100vh;
+}
