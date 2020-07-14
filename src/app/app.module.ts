@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AlertComponent } from './_components/alert.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {ErrorInterceptor, FakeBackendInterceptor, JwtInterceptor} from '@app/_helpers';
+import {ErrorInterceptor, fakeBackendProvider, JwtInterceptor} from '@app/_helpers';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import {ErrorInterceptor, FakeBackendInterceptor, JwtInterceptor} from '@app/_he
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    FakeBackendInterceptor
+    fakeBackendProvider,
   ],
   bootstrap: [AppComponent],
 })
