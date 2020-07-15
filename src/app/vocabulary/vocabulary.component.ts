@@ -11,5 +11,4 @@ export class VocabularyComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

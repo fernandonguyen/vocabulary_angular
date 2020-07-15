@@ -1,34 +1,23 @@
-<div class="wrapper">
-    <!-- Sidebar Holder -->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>Vocabulary Manager </h3>
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">Start Bootstrap </div>
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
         </div>
-        <ul class="list-group list-unstyled components">
-            <li>
-                <a class="nav-item nav-link" routerLink="add-vocabulary">Card Component</a>
-            </li>
-            <li>
-                <a class="nav-item nav-link" routerLink="add-vocabulary">Game</a>
-            </li>
-            <li>
-                <a class="nav-item nav-link" routerLink="add-vocabulary">Blog</a>
-            </li>
-            <li>
-                <a class="nav-item nav-link" routerLink="add-vocabulary">Contact</a>
-            </li>
-        </ul>
-    </nav>
-    <div class="container">
-        <router-outlet></router-outlet>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-            $('.collapse.in').toggleClass('in');
-            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-        });
-    });
-</script>

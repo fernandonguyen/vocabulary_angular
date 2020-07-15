@@ -1,6 +1,12 @@
 <!-- nav -->
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
     <div class="navbar-nav">
+        <nav class="navbar navbar-dark bg-dark">
+            <!--            <button class="btn btn-primary" (click)= toggerNav($event) *ngIf="!isTogger" id="menu-toggle">Toggle Menu</button>-->
+            <button class="navbar-toggler" type="button" (click)= toggerNav($event) data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
         <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
         <a class="nav-item nav-link" routerLink="/vocabulary" routerLinkActive="active">Vocabulary</a>
@@ -17,6 +23,6 @@
 <footer class="page-footer font-small blue">
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="https://mdbootstrap.com/">Codegym</a>
+        <a href="https://codegy.vn/">Codegym</a>
     </div>
 </footer>

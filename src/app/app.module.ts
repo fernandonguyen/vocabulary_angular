@@ -19,7 +19,7 @@ import {ErrorInterceptor, fakeBackendProvider, JwtInterceptor} from '@app/_helpe
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

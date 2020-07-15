@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "@app/_models";
 
 @Component({
   selector: 'app-list-vocabulary',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListVocabularyComponent implements OnInit {
 
+  users: User[] = [{
+    id : '1',
+    username : 'Kien',
+    password : '',
+    firstName : '',
+    lastName : '',
+    token : ''
+    }
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteUser(id) {
+
   }
 
 }
