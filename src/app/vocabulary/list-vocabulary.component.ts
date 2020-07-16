@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "@app/_models";
+import {User, Vocabulary} from '@app/_models';
+import {AccountService} from '@app/_services/account.service';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-vocabulary',
@@ -18,13 +20,24 @@ export class ListVocabularyComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  currentUser: User;
+  vocabularys = null;
 
-  ngOnInit(): void {
+  constructor(private accountService: AccountService) {
+    this.currentUser = accountService.userValue;
   }
 
-  deleteUser(id) {
+  ngOnInit(): void {
+    this.accountService.getVocabularyByUser(this.currentUser.id).pipe(first()).subscribe( vocabularys => this.vocabularys = vocabularys );
+  }
 
+  deleteVocabulary(id) {
+    const vocabulary = this.vocabularys.find(x => x.id === id);
+    vocabulary.isDeleting = true;
+    this.accountService.deleteVocabulary(id).pipe(first())
+        .subscribe(() => {
+          this.vocabularys = this.vocabularys.filter(x => x.id !== id);
+        });
   }
 
 }

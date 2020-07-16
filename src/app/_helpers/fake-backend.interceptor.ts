@@ -2,9 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+import {Vocabulary} from '@app/_models';
 
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
+const test: Vocabulary[] = [
+    {
+        id: '1',
+        word: 'hello',
+        mean: 'xin chao',
+        des: 'Xin chao ay ma',
+        lang: 'English',
+        idUser: '1'
+    }
+]
+let vocabularys = JSON.parse(localStorage.getItem('vocabularys')) || test;
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -33,6 +45,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return updateUser();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
                     return deleteUser();
+                case url.match(/\/vocabularys\/\d+$/) && method === 'GET':
+                    return getWordsbyUser();
+                case url.match(/\/addVocabularys\/\d+$/) && method === 'POST':
+                    return addWordsbyUser();
+                case url.match(/\/getVocabulary\/\d+$/) && method === 'GET':
+                    return getVocabularyById();
+                case url.match(/\/vocabulary\/\d+$/) && method === 'PUT':
+                    return updateVocabularyById();
+                case url.match(/\/deleteVocabulary\/\d+$/) && method === 'DELETE':
+                    return deleteVocabulary();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -77,6 +99,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             const user = users.find(x => x.id === idFromUrl());
             return ok(user);
+        }
+
+        function getVocabularyById() {
+            if (!isLoggedIn()) { return unauthorized(); }
+            // tslint:disable-next-line:triple-equals
+            const vocabulary = vocabularys.find(x => x.id == idFromUrl());
+            return ok(vocabulary);
         }
 
         function updateUser() {
@@ -128,6 +157,54 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const urlParts = url.split('/');
             // tslint:disable-next-line:radix
             return parseInt(urlParts[urlParts.length - 1]);
+        }
+
+        function getWordsbyUser() {
+            if (!isLoggedIn()) { return unauthorized(); }
+            // tslint:disable-next-line:triple-equals
+            vocabularys = vocabularys.filter(x => x.idUser == idFromUrl());
+            return ok(vocabularys);
+        }
+
+        // if (users.find(x => x.username === user.username)) {
+        //     return error('Username "' + user.username + '" is already taken');
+        // }
+        //
+        // user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+        // users.push(user);
+        // localStorage.setItem('users', JSON.stringify(users));
+        // return ok();
+        function addWordsbyUser() {
+            const regex = /( |<([^>]+)>)/ig;
+            if (!isLoggedIn()) { return unauthorized(); }
+            const vocabulary = body;
+            const  idUser = idFromUrl();
+            vocabulary.id = vocabularys.length ? Math.max(...vocabularys.map(x => x.id)) + 1 : 1;
+          //  vocabulary.des = vocabulary.des.replace(regex, '');
+            vocabulary.idUser = idUser;
+            vocabularys.push(vocabulary);
+            localStorage.setItem('vocabularys', JSON.stringify(vocabularys));
+            return ok();
+        }
+
+        function updateVocabularyById() {
+            const regex = /( |<([^>]+)>)/ig;
+            if (!isLoggedIn()) { return unauthorized(); }
+            const params = body;
+            // tslint:disable-next-line:triple-equals
+            const vocabulary = vocabularys.find(x => x.id == idFromUrl());
+            console.log(params.des);
+           // params.des = params.des.replace(regex, '');
+            Object.assign(vocabulary, params);
+            localStorage.setItem('vocabularys', JSON.stringify(vocabularys));
+            return ok();
+        }
+
+        function deleteVocabulary() {
+            if (!isLoggedIn()) { return unauthorized(); }
+            vocabularys = vocabularys.filter(x => x.id !== idFromUrl());
+            localStorage.setItem('users', JSON.stringify(vocabularys));
+            return ok();
         }
     }
 }

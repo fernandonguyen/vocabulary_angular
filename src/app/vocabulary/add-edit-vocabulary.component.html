@@ -1,1 +1,55 @@
-<p>add-edit-vocabulary works!</p>
+<h1 *ngIf="isAddMode">Add Vocabulary for {{currentUser.username}}</h1>
+<h1 *ngIf="!isAddMode">Edit User</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <label for="word">Word</label>
+            <input type="text" formControlName="word" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.word.errors }" />
+            <div *ngIf="submitted && f.word.errors" class="invalid-feedback">
+                <div *ngIf="f.word.errors.required">Word is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <label for="mean">Mean</label>
+            <input type="text" formControlName="mean" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mean.errors }" />
+            <div *ngIf="submitted && f.mean.errors" class="invalid-feedback">
+                <div *ngIf="f.mean.errors.required">Mean is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <label for="lang">Lang</label>
+            <input type="text" formControlName="lang" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mean.errors }" />
+            <div *ngIf="submitted && f.mean.errors" class="invalid-feedback">
+                <div *ngIf="f.lang.errors.required">Lang is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+<!--        <div class="form-group col-md-4">-->
+<!--            <label for="des">Description</label>-->
+<!--            <input type="text" formControlName="des" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.des.errors }" />-->
+<!--            <div *ngIf="submitted && f.des.errors" class="invalid-feedback">-->
+<!--                <div *ngIf="f.des.errors.required">Description is required</div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="form-group col-md-8">
+            <label for="des">Description:</label>
+            <angular-editor formControlName="des" [ngClass]="{ 'is-invalid': submitted && f.des.errors }" [config]="config" formControlName="des"></angular-editor>
+            <div *ngIf="submitted && f.des.errors" class="invalid-feedback">
+                <div *ngIf="f.des.errors.required || f.des.errors.minlength || f.des.errors.maxlength">Description is required(Max 400 - Min 5).</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/vocabulary/add-vocabulary/{{currentUser.id}}" class="btn btn-link">Cancel</a>
+    </div>
+</form>
+

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {User} from '../_models';
+import {User, Vocabulary} from '../_models';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
@@ -51,9 +51,20 @@ export class AccountService {
     return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
 
+  getVocabularyByUser(id: string) {
+    return this.http.get<Vocabulary[]>(`${environment.apiUrl}/vocabularys/${id}`);
+  }
+
+  addVocabularyByUser(userId: string, vocabulary: Vocabulary) {
+    return this.http.post(`${environment.apiUrl}/addVocabularys/${userId}`, vocabulary);
+  }
+
   getById(id: string) {
-    console.log(id);
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+  }
+
+  getVocabularyById(id: string) {
+    return this.http.get<Vocabulary>(`${environment.apiUrl}/getVocabulary/${id}`);
   }
 
   update(id, params) {
@@ -69,6 +80,19 @@ export class AccountService {
       }));
   }
 
+  updateVocabulary(id, params) {
+    return this.http.put(`${environment.apiUrl}/vocabulary/${id}`, params)
+        .pipe(map(x => {
+          // tslint:disable-next-line:triple-equals
+          if (id == this.userValue.id) {
+            const user = {...this.userValue, ...params};
+            localStorage.setItem('user', JSON.stringify(user));
+            this.userSubject.next(user);
+          }
+          return x;
+        }));
+  }
+
   delete(id: string) {
     return this.http.delete(`${environment.apiUrl}/users/${id}`)
       .pipe(map(x => {
@@ -78,5 +102,9 @@ export class AccountService {
         }
         return x;
       }));
+  }
+
+  deleteVocabulary(id: string) {
+    return this.http.delete(`${environment.apiUrl}/deleteVocabulary/${id}`);
   }
 }

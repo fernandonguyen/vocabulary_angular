@@ -1,24 +1,23 @@
-<h1>Users</h1>
-<a routerLink="add" class="btn btn-sm btn-success mb-2">Add User</a>
+<h1>{{currentUser.username}}</h1>
+<a routerLink="add-vocabulary" class="btn btn-sm btn-success mb-2">Add New Word</a>
 <table class="table table-striped">
     <thead>
     <tr>
-        <th style="width: 30%">First Name</th>
-        <th style="width: 30%">Last Name</th>
-        <th style="width: 30%">Username</th>
-        <th style="width: 10%"></th>
+        <th style="width: 30%">Words</th>
+        <th style="width: 30%">Means</th>
+        <th style="width: 30%">Lang</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of users">
-        <td>{{user.firstName}}</td>
-        <td>{{user.lastName}}</td>
-        <td>{{user.username}}</td>
+    <tr *ngFor="let vocabulary of vocabularys">
+        <td>{{vocabulary.word}}</td>
+        <td>{{vocabulary.mean}}</td>
+        <td>{{vocabulary.lang}}</td>
         <td style="white-space: nowrap">
-            <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
-            <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
-                <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
-                <span *ngIf="!user.isDeleting">Delete</span>
+            <a routerLink="add-vocabulary/{{vocabulary.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+            <button (click)="deleteVocabulary(vocabulary.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="vocabulary.isDeleting">
+                <span *ngIf="vocabulary.isDeleting" class="spinner-border spinner-border-sm"></span>
+                <span *ngIf="!vocabulary.isDeleting">Delete</span>
             </button>
         </td>
     </tr>
