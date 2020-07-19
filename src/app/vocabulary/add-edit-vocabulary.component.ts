@@ -25,7 +25,7 @@ export class AddEditVocabularyComponent implements OnInit {
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    height: '15rem',
+    height: '10rem',
     minHeight: '5rem',
     placeholder: 'Enter text here...',
     translate: 'no',

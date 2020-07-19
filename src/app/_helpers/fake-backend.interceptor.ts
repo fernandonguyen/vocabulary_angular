@@ -193,7 +193,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const params = body;
             // tslint:disable-next-line:triple-equals
             const vocabulary = vocabularys.find(x => x.id == idFromUrl());
-            console.log(params.des);
            // params.des = params.des.replace(regex, '');
             Object.assign(vocabulary, params);
             localStorage.setItem('vocabularys', JSON.stringify(vocabularys));

@@ -1,0 +1,14 @@
+<div class="tp-wrapper">
+    <div class="tp-left">
+        <button class="previous round" (click)="previous()">&#8249;</button>
+    </div>
+    <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+        <div class="tp-box__side tp-box__front">{{vocabularys[index].word}}
+        </div>
+        <div class="tp-box__side tp-box__back">{{vocabularys[index].mean}}
+        </div>
+    </div>
+    <div class="tp-right">
+        <button class="next round" (click)="next()">&#8250;</button>
+    </div>
+</div>

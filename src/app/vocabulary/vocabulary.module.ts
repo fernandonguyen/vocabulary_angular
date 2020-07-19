@@ -7,14 +7,15 @@ import { AddEditVocabularyComponent } from './add-edit-vocabulary.component';
 import { ListVocabularyComponent } from './list-vocabulary.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AngularEditorModule} from '@kolkov/angular-editor';
+import { FlashCardComponent } from './flash-card.component';
 
 @NgModule({
-  declarations: [VocabularyComponent, AddEditVocabularyComponent, ListVocabularyComponent],
+  declarations: [VocabularyComponent, AddEditVocabularyComponent, ListVocabularyComponent, FlashCardComponent],
     imports: [
         CommonModule,
         VocabularyRoutingModule,
         ReactiveFormsModule,
-        AngularEditorModule,
+        AngularEditorModule
     ]
 })
 export class VocabularyModule { }

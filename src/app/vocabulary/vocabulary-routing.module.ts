@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { VocabularyComponent } from './vocabulary.component';
 import {AddEditVocabularyComponent} from '@app/vocabulary/add-edit-vocabulary.component';
 import {ListVocabularyComponent} from '@app/vocabulary/list-vocabulary.component';
+import {FlashCardComponent} from "@app/vocabulary/flash-card.component";
 
 const routes: Routes = [
     {
@@ -11,7 +12,8 @@ const routes: Routes = [
         children: [
             { path: '', component: ListVocabularyComponent },
             { path: 'add-vocabulary', component: AddEditVocabularyComponent },
-            { path: 'add-vocabulary/:id', component: AddEditVocabularyComponent }
+            { path: 'add-vocabulary/:id', component: AddEditVocabularyComponent },
+            { path: 'flash-card', component: FlashCardComponent },
         ]
     }
 ];
