@@ -1,20 +1,20 @@
 .tp-wrapper {
     -webkit-perspective: 800px;
     perspective: 800px;
-    width: 60%;
+    width: 40vw;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 10vh;
 }
 .tp-left {
     float: left;
     overflow: auto;
-    margin-top: 17%;
+    margin-top: 8vw;
 }
 
 .tp-right {
     float: left;
     overflow: auto;
-    margin-top: 17%;
+    margin-top: 8vw;
 }
 
 .tp-box {

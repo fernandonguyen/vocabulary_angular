@@ -10,16 +10,6 @@ import {first} from 'rxjs/operators';
 })
 export class ListVocabularyComponent implements OnInit {
 
-  users: User[] = [{
-    id : '1',
-    username : 'Kien',
-    password : '',
-    firstName : '',
-    lastName : '',
-    token : ''
-    }
-  ]
-
   currentUser: User;
   vocabularys = null;
 
